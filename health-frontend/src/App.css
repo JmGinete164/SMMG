@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+:root{
+  --primary-red: #C94A4A;
+  --primary-red-50: #FFEAEA;
+  --surface: #FFFFFF;
+  --muted: #6B7280;
+  --bg: #F7F7F8;
+  --card-shadow: 0 6px 18px rgba(15,23,42,0.06);
+  --radius-md: 14px;
+}
+
+html,body,#root{height:100%;}
+body{font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:#0f172a}
+
+.app-container{max-width:1280px;margin:0 auto;padding:24px}
+
+.card-clean{background:var(--surface);border-radius:var(--radius-md);box-shadow:var(--card-shadow);padding:16px}
+
+.btn-primary{background:var(--primary-red);color:white;padding:10px 14px;border-radius:10px}
+.btn-ghost{background:transparent;color:var(--primary-red);border:1px solid rgba(201,74,74,0.12);padding:8px 12px;border-radius:10px}
+
+.muted{color:var(--muted)}
+
+/* small utilities used in components */
+.rounded-lg-14{border-radius:14px}
+.shadow-soft{box-shadow:var(--card-shadow)}
+.bg-card{background:var(--surface)}
+
+/* ensure main content and flex children can shrink properly to allow scroll instead of overflow */
+.min-h-0 { min-height: 0 }
+.flex-1 { flex: 1 1 auto }
+
+/* mobile overlay for sidebar */
+.mobile-sidebar { position: fixed; inset: 0; z-index: 40 }
+
+/* small visual tweaks to ensure no overlaps on mobile */
+@media (max-width: 768px) {
+  .app-container { padding: 16px }
+}
+
+/* Typography and layout refinements to match wireframe spacing */
+h1,h2,h3{font-weight:600}
+body {font-size:14px;line-height:1.4}
+
+/* Navigation link styles */
+.nav-link{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;color:#374151;text-decoration:none}
+.nav-link:hover{background:var(--primary-red-50);color:var(--primary-red)}
+.nav-link .icon{color:#9CA3AF}
+.nav-link.active{background:var(--primary-red);color:#fff}
+.nav-link.active .icon{color:#fff}
+
+/* Cards with slightly larger radius and consistent padding */
+.rounded-lg-14{border-radius:14px}
+.rounded-2xl-18{border-radius:18px}
+
+/* Ensure no overlapping: container with proper min height */
+.app-container > * + *{margin-top:18px}
+
