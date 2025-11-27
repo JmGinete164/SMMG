@@ -43,15 +43,13 @@ const Sidebar = ({ user, className = '', onClose }) => {
 
   return (
     <aside className={`w-72 bg-card h-screen sticky top-0 border-r border-gray-100 ${className}`}>
-      <div className="px-6 py-5 flex items-center gap-3">
-        <img src="/logo192.png" alt="SMMG" className="w-12 h-12 rounded-full shadow-sm" />
-        <div>
-          <div className="text-sm font-semibold">{user.name}</div>
-          <div className="text-xs text-muted">ID: {user.id}</div>
-        </div>
+      {/* Logo Section - Centered */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 16px', borderBottom: '1px solid #E5E7EB' }}>
+        <img src="/logo192.png" alt="SMMG" style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover', marginBottom: 12, boxShadow: '0 2px 8px rgba(15,23,42,0.08)' }} />
+        <div style={{ fontSize: 13, fontWeight: 600, color: '#C94A4A', textAlign: 'center', letterSpacing: '0.3px' }}>SMMG Medical Plaza</div>
       </div>
 
-      <nav className="mt-6 px-3 space-y-1">
+      <nav className="mt-4 px-3 space-y-1">
         {nav.map((n) => (
           <NavLink key={n.name} to={n.to} className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}>
             <span className="icon"><Icon name={n.name} /></span>
