@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 
@@ -10,6 +11,21 @@ const Layout = ({ children }) => {
   const user = { name: 'Clarklee B. Chan', id: '041005' };
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  // Track the current route
+  const location = useLocation();
+
+  // Map routes to page titles
+  const routeTitleMap = {
+    '/': 'Home',
+    '/chatbot': 'Chatbot',
+    '/scheduling': 'Scheduling',
+    '/history': 'Medical History',
+    '/about': 'About',
+  };
+
+  // Get the current page title based on the route
+  const pageTitle = routeTitleMap[location.pathname] || 'SMMG Medical Plaza';
 
   const activeSidebarWidth = sidebarCollapsed ? sidebarWidthCollapsed : sidebarWidthExpanded;
 
@@ -32,7 +48,7 @@ const Layout = ({ children }) => {
 
       {/* Topbar fixed to the right of the sidebar */}
       <div style={{ position: 'fixed', left: activeSidebarWidth, right: 0, top: 0, height: topbarHeight, zIndex: 40, transition: 'left 0.3s ease' }}>
-        <Topbar onToggleSidebar={() => setShowMobileSidebar((s) => !s)} />
+        <Topbar onToggleSidebar={() => setShowMobileSidebar((s) => !s)} pageTitle={pageTitle} />
       </div>
 
       {/* Main content area - placed to the right of sidebar and below topbar */}

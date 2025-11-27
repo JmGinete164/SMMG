@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Topbar = ({ onToggleSidebar }) => {
+const Topbar = ({ onToggleSidebar, pageTitle = 'SMMG Medical Plaza' }) => {
   return (
     <header style={{ height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#FFFFFF', paddingLeft: 20, paddingRight: 20, boxShadow: '0 1px 3px rgba(15,23,42,0.04)', borderBottom: '1px solid #E5E7EB' }}>
-      {/* Left: Menu button + Logo */}
+      {/* Left: Menu button + Title */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
         <button onClick={onToggleSidebar} style={{ display: 'none', '@media (max-width: 768px)': { display: 'block' }, padding: 6, borderRadius: 8, backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" strokeWidth={2} style={{ width: 20, height: 20 }}>
@@ -12,7 +12,7 @@ const Topbar = ({ onToggleSidebar }) => {
         </button>
 
         <div>
-          <div style={{ fontSize: 14, fontWeight: 600, color: '#C94A4A', letterSpacing: '0.5px' }}>SMMG Medical Plaza</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: '#C94A4A', letterSpacing: '0.5px' }}>{pageTitle}</div>
         </div>
       </div>
 
