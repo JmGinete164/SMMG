@@ -5,7 +5,7 @@ import Topbar from './Topbar';
 const Layout = ({ children }) => {
   // fixed sizes for layout
   const sidebarWidth = 280; // px
-  const topbarHeight = 64; // px
+  const topbarHeight = 56; // px - compact header
   const user = { name: 'Clarklee B. Chan', id: '041005' };
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
 
