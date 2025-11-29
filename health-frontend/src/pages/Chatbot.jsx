@@ -1,23 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const LeftPanel = ({ onQuick }) => (
-  <aside className="w-80 p-4 card-clean rounded-lg-14">
-    <div className="text-sm font-semibold mb-3">Quick Actions</div>
-    <div className="space-y-2">
-      <button onClick={() => onQuick('I have a headache, what could it be?')} className="w-full text-left p-3 rounded-md hover:bg-gray-50">🩺 Ask about symptoms</button>
-      <button onClick={() => onQuick('What are common side effects of amoxicillin?')} className="w-full text-left p-3 rounded-md hover:bg-gray-50">💊 Ask about medications</button>
-      <button onClick={() => onQuick('Give me some tips for healthy living')} className="w-full text-left p-3 rounded-md hover:bg-gray-50">📋 Ask for health tips</button>
-    </div>
-  </aside>
+const QuickActions = ({ onQuick }) => (
+  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+    <button onClick={() => onQuick('I have a headache, what could it be?')} style={{ padding: '8px 12px', borderRadius: 999, background: '#FFF5F5', border: '1px solid #FEE2E2', color: '#C94A4A', cursor: 'pointer' }}>🩺 Ask symptoms</button>
+    <button onClick={() => onQuick('What are common side effects of amoxicillin?')} style={{ padding: '8px 12px', borderRadius: 999, background: '#F3F4F6', border: '1px solid #E5E7EB', color: '#374151', cursor: 'pointer' }}>💊 Medications</button>
+    <button onClick={() => onQuick('Give me some tips for healthy living')} style={{ padding: '8px 12px', borderRadius: 999, background: '#F3F4F6', border: '1px solid #E5E7EB', color: '#374151', cursor: 'pointer' }}>📋 Health tips</button>
+  </div>
 );
 
 const ChatWindow = ({ messages }) => {
   const ref = useRef();
   useEffect(() => { if (ref.current) ref.current.scrollTop = ref.current.scrollHeight; }, [messages]);
   return (
-    <div ref={ref} className="flex-1 p-6 flex flex-col gap-4 overflow-auto bg-card rounded-lg-14 shadow-soft" style={{ maxHeight: '62vh' }}>
+    <div ref={ref} style={{ display: 'flex', flexDirection: 'column', gap: 12, overflow: 'auto', padding: 20 }}>
       {messages.map((m, i) => (
-        <div key={i} className={`max-w-3/4 p-3 rounded-2xl ${m.role === 'user' ? 'self-end bg-primary-red-50 text-primary-red' : 'self-start bg-white text-gray-800'} shadow-sm`}>
+        <div key={i} style={{ maxWidth: '72%', padding: '12px 14px', borderRadius: 18, alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start', background: m.role === 'user' ? 'rgba(201,74,74,0.08)' : '#FFFFFF', color: m.role === 'user' ? '#C94A4A' : '#111827', boxShadow: '0 4px 12px rgba(15,23,42,0.04)' }}>
           {m.content}
         </div>
       ))}
@@ -42,17 +39,45 @@ const Chatbot = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 min-h-0">
-      <div className="md:w-80 flex-shrink-0">
-        <LeftPanel onQuick={(q) => send(q)} />
-      </div>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: 16 }}>
+      <div style={{ width: '100%', maxWidth: 980, display: 'flex', gap: 18 }}>
+        {/* Left quick panel (optional on small screens) */}
+        <div style={{ width: 220, flexShrink: 0 }}>
+          <div style={{ background: '#FFFFFF', padding: 16, borderRadius: 12, boxShadow: '0 6px 18px rgba(15,23,42,0.04)' }}>
+            <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>Quick Actions</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <button onClick={() => send('I have a headache, what could it be?')} style={{ textAlign: 'left', padding: '10px 12px', borderRadius: 8, background: 'transparent', border: '1px solid #F3F4F6', cursor: 'pointer' }}>🩺 Ask about symptoms</button>
+              <button onClick={() => send('What are common side effects of amoxicillin?')} style={{ textAlign: 'left', padding: '10px 12px', borderRadius: 8, background: 'transparent', border: '1px solid #F3F4F6', cursor: 'pointer' }}>💊 Ask about medications</button>
+              <button onClick={() => send('Give me some tips for healthy living')} style={{ textAlign: 'left', padding: '10px 12px', borderRadius: 8, background: 'transparent', border: '1px solid #F3F4F6', cursor: 'pointer' }}>📋 Ask for health tips</button>
+            </div>
+          </div>
+        </div>
 
-      <div className="flex-1 flex flex-col gap-3 min-h-0">
-        <ChatWindow messages={messages} />
+        {/* Chat area */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {/* Quick actions row aligned with chat area */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <QuickActions onQuick={(q) => send(q)} />
+          </div>
 
-        <div className="p-4 flex gap-3 items-center bg-card rounded-lg-14 shadow-sm">
-          <input value={text} onChange={(e) => setText(e.target.value)} className="flex-1 border border-gray-100 rounded-full px-4 py-3" placeholder="Type your message... e.g. 'I have a sore throat'" />
-          <button onClick={() => send(text)} className="btn-primary">Send</button>
+          <div style={{ background: '#F8FAFC', borderRadius: 12, padding: 0, display: 'flex', flexDirection: 'column', minHeight: 420, boxShadow: '0 8px 20px rgba(15,23,42,0.04)' }}>
+            <div style={{ padding: 18, borderBottom: '1px solid #EEF2F7' }}>
+              <div style={{ fontSize: 16, fontWeight: 700 }}>Chat with SMMG Assistant</div>
+              <div style={{ fontSize: 13, color: '#6B7280', marginTop: 4 }}>Ask health-related questions, book appointments, or request tips.</div>
+            </div>
+
+            <div style={{ flex: 1, padding: 18, display: 'flex', flexDirection: 'column' }}>
+              <ChatWindow messages={messages} />
+            </div>
+
+            {/* Input area */}
+            <div style={{ padding: 14, borderTop: '1px solid #EEF2F7', display: 'flex', alignItems: 'center' }}>
+              <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+                <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Type your message... e.g. 'I have a sore throat'" style={{ width: '100%', padding: '12px 16px', borderRadius: 999, border: '1px solid #E6E9EE', boxShadow: 'inset 0 1px 0 rgba(15,23,42,0.02)', fontSize: 14, outline: 'none' }} />
+              </div>
+              <button onClick={() => send(text)} style={{ marginLeft: 12, padding: '10px 14px', borderRadius: 10, background: '#C94A4A', color: '#fff', border: 'none', cursor: 'pointer', boxShadow: '0 6px 14px rgba(201,74,74,0.18)' }}>Send</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
