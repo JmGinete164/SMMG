@@ -39,39 +39,27 @@ const Chatbot = () => {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: 16, background: 'transparent' }}>
-      <div style={{ width: '100%', maxWidth: 1200, display: 'flex', gap: 18 }}>
-        {/* Left quick panel (optional on small screens) */}
-        <div style={{ width: 220, flexShrink: 0 }}>
-          <div style={{ background: '#FFFFFF', padding: 16, borderRadius: 12, boxShadow: '0 6px 18px rgba(15,23,42,0.04)' }}>
-            <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>Quick Actions</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <button onClick={() => send('I have a headache, what could it be?')} style={{ textAlign: 'left', padding: '10px 12px', borderRadius: 8, background: 'transparent', border: '1px solid #F3F4F6', cursor: 'pointer' }}>🩺 Ask about symptoms</button>
-              <button onClick={() => send('What are common side effects of amoxicillin?')} style={{ textAlign: 'left', padding: '10px 12px', borderRadius: 8, background: 'transparent', border: '1px solid #F3F4F6', cursor: 'pointer' }}>💊 Ask about medications</button>
-              <button onClick={() => send('Give me some tips for healthy living')} style={{ textAlign: 'left', padding: '10px 12px', borderRadius: 8, background: 'transparent', border: '1px solid #F3F4F6', cursor: 'pointer' }}>📋 Ask for health tips</button>
-            </div>
-          </div>
-        </div>
-
+    <div style={{ display: 'flex', justifyContent: 'center', padding: 16, background: '#FFFFFF' }}>
+      <div style={{ width: '100%', maxWidth: 980 }}>
         {/* Chat area */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 }}>
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 }}>
           {/* Quick actions row aligned with chat area */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
             <QuickActions onQuick={(q) => send(q)} />
           </div>
 
-          <div style={{ background: '#F8FAFC', borderRadius: 12, padding: 0, display: 'flex', flexDirection: 'column', minHeight: 420, boxShadow: '0 8px 20px rgba(15,23,42,0.04)', width: '100%' }}>
-            <div style={{ padding: 18, borderBottom: '1px solid #EEF2F7' }}>
+          <div style={{ background: '#FFFFFF', borderRadius: 12, padding: 0, display: 'flex', flexDirection: 'column', minHeight: 420, boxShadow: '0 8px 20px rgba(15,23,42,0.04)', width: '100%' }}>
+            <div style={{ padding: 18, borderBottom: '1px solid #EEF2F7', background: '#FFFFFF' }}>
               <div style={{ fontSize: 16, fontWeight: 700 }}>Chat with SMMG Assistant</div>
               <div style={{ fontSize: 13, color: '#6B7280', marginTop: 4 }}>Ask health-related questions, book appointments, or request tips.</div>
             </div>
 
-            <div style={{ flex: 1, padding: 18, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+            <div style={{ flex: 1, padding: 18, display: 'flex', flexDirection: 'column', minWidth: 0, background: '#FFFFFF' }}>
               <ChatWindow messages={messages} />
             </div>
 
             {/* Input area */}
-            <div style={{ padding: 14, borderTop: '1px solid #EEF2F7', display: 'flex', alignItems: 'center' }}>
+            <div style={{ padding: 14, borderTop: '1px solid #EEF2F7', display: 'flex', alignItems: 'center', background: '#FFFFFF' }}>
               <div style={{ flex: 1, display: 'flex', alignItems: 'center', minWidth: 0 }}>
                 <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Type your message... e.g. 'I have a sore throat'" style={{ width: '100%', padding: '12px 16px', borderRadius: 999, border: '1px solid #E6E9EE', boxShadow: 'inset 0 1px 0 rgba(15,23,42,0.02)', fontSize: 14, outline: 'none' }} />
               </div>
