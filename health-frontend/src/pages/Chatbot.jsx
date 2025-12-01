@@ -39,16 +39,16 @@ const Chatbot = () => {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: 16, background: '#FFFFFF' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 16px', background: 'linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%)', minHeight: 'calc(100vh - 100px)' }}>
       <div style={{ width: '100%', maxWidth: 980 }}>
         {/* Chat area */}
-        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 }}>
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 14, minWidth: 0 }}>
           {/* Quick actions row aligned with chat area */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', paddingLeft: 4 }}>
             <QuickActions onQuick={(q) => send(q)} />
           </div>
 
-          <div style={{ background: '#FFFFFF', borderRadius: 12, padding: 0, display: 'flex', flexDirection: 'column', minHeight: 420, boxShadow: '0 8px 20px rgba(15,23,42,0.04)', width: '100%' }}>
+          <div style={{ background: '#FFFFFF', borderRadius: 14, padding: 0, display: 'flex', flexDirection: 'column', minHeight: 420, boxShadow: '0 12px 32px rgba(15,23,42,0.08)', width: '100%', border: '1px solid #F1F5F9' }}>
             <div style={{ padding: 18, borderBottom: '1px solid #EEF2F7', background: '#FFFFFF' }}>
               <div style={{ fontSize: 16, fontWeight: 700 }}>Chat with SMMG Assistant</div>
               <div style={{ fontSize: 13, color: '#6B7280', marginTop: 4 }}>Ask health-related questions, book appointments, or request tips.</div>
